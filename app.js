@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+  , Resource = require('express-resource')
   , routes = require('./routes');
 
 var PORT = process.env.PORT || 3000;
@@ -32,6 +33,8 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+
+app.resource('events', require('./routes/events'));
 
 app.listen(PORT, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
